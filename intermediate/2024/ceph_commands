@@ -21,18 +21,18 @@ chmod +x cephadm
 cephadm bootstrap --mon-ip $(grep storage /etc/hosts | head -n 1 | awk '{print $1}') --allow-fqdn-hostname
 
 ## Push out ceph key from lci-storage-XX-1
-ssh-copy-id -f -i /etc/ceph/ceph.pub root@lci-storage-XX-2
-ssh-copy-id -f -i /etc/ceph/ceph.pub root@lci-storage-XX-3
-ssh-copy-id -f -i /etc/ceph/ceph.pub root@lci-storage-XX-4
+ssh-copy-id -f -i /etc/ceph/ceph.pub root@lci-storage-34-2
+ssh-copy-id -f -i /etc/ceph/ceph.pub root@lci-storage-34-3
+ssh-copy-id -f -i /etc/ceph/ceph.pub root@lci-storage-34-4
 
 ## Check Ceph Status
 cephadm shell -- ceph -v
 cephadm shell -- ceph status
 
 ## Expand the cluster
-cephadm shell -- ceph orch host add lci-storage-XX-2.novalocal $(grep lci-storage-XX-2 /etc/hosts | awk '{print $1}')
-cephadm shell -- ceph orch host add lci-storage-XX-3.novalocal $(grep lci-storage-XX-3 /etc/hosts | awk '{print $1}')
-cephadm shell -- ceph orch host add lci-storage-XX-4.novalocal $(grep lci-storage-XX-4 /etc/hosts | awk '{print $1}')
+cephadm shell -- ceph orch host add lci-storage-34-2.novalocal $(grep lci-storage-XX-2 /etc/hosts | awk '{print $1}')
+cephadm shell -- ceph orch host add lci-storage-34-3.novalocal $(grep lci-storage-XX-3 /etc/hosts | awk '{print $1}')
+cephadm shell -- ceph orch host add lci-storage-34-4.novalocal $(grep lci-storage-XX-4 /etc/hosts | awk '{print $1}')
 
 ## Verify 4 mon nodes
 cephadm shell -- ceph status
@@ -45,7 +45,7 @@ cephadm shell -- ceph orch apply osd --all-available-devices
 cephadm shell -- ceph status
 
 ## Create CephFS
-cephadm shell -- ceph fs volume create lci lci-storage-XX-1.novalocal,lci-storage-XX-2.novalocal
+cephadm shell -- ceph fs volume create lci lci-storage-34-1.novalocal,lci-storage-34-2.novalocal
 
 ## Place Ceph Repo on Compute nodes and head node (following contents in /etc/yum.repos.d/ceph_stable.repo)
 
