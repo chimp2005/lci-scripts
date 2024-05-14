@@ -102,3 +102,5 @@ mmdeldisk lci “storage2_disk0” -r -N coreio
 ## Check NSD capacities again and you can see data got redistributed
 mmdf lci
 
+## re add the disk to the cluster and see the data be redistributed 
+mmadddisk lci "storage2_disk_1" -N coreio
