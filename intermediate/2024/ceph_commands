@@ -30,9 +30,9 @@ cephadm shell -- ceph -v
 cephadm shell -- ceph status
 
 ## Expand the cluster
-cephadm shell -- ceph orch host add lci-storage-34-2.novalocal $(grep lci-storage-XX-2 /etc/hosts | awk '{print $1}')
-cephadm shell -- ceph orch host add lci-storage-34-3.novalocal $(grep lci-storage-XX-3 /etc/hosts | awk '{print $1}')
-cephadm shell -- ceph orch host add lci-storage-34-4.novalocal $(grep lci-storage-XX-4 /etc/hosts | awk '{print $1}')
+cephadm shell -- ceph orch host add lci-storage-34-2.novalocal $(grep lci-storage-34-2 /etc/hosts | awk '{print $1}')
+cephadm shell -- ceph orch host add lci-storage-34-3.novalocal $(grep lci-storage-34-3 /etc/hosts | awk '{print $1}')
+cephadm shell -- ceph orch host add lci-storage-34-4.novalocal $(grep lci-storage-34-4 /etc/hosts | awk '{print $1}')
 
 ## Verify 4 mon nodes
 cephadm shell -- ceph status
